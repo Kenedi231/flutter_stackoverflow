@@ -17,9 +17,9 @@ class _$ApiService extends ApiService {
   final definitionType = ApiService;
 
   @override
-  Future<Response<dynamic>> getPosts(String page) {
+  Future<Response<dynamic>> getPosts(int page) {
     final $url =
-        '/2.2/questions?page=$page&pagesize=10&order=desc&sort=activity&site=stackoverflow';
+        '/2.2/questions?page=$page&pagesize=20&order=desc&sort=activity&site=stackoverflow';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }

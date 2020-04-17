@@ -10,9 +10,11 @@ class SplashViewModelProvider<T extends SplashScreenViewModel> extends Stateless
 
   @override
   Widget build(BuildContext context) {
-    model.navigateToMain();
     return ChangeNotifierProvider<T>(
-      create: (BuildContext context2) => model,
+      create: (BuildContext context2) {
+        model.navigateToMain();
+        return model;
+      },
       child: Consumer<T>(
         builder: (BuildContext context, T value, Widget child) => builder(value),
       ),

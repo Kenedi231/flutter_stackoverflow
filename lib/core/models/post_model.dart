@@ -1,8 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'post_model.g.dart';
-
-@JsonSerializable()
 class PostModel {
   List<String> tags;
   Map owner;
@@ -18,6 +13,7 @@ class PostModel {
 
   PostModel(
     this.tags,
+    this.owner,
     this.is_answered,
     this.view_count,
     this.answer_count,
@@ -28,8 +24,4 @@ class PostModel {
     this.link,
     this.title,
   );
-
-  factory PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PostModelToJson(this);
 }

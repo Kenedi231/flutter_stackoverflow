@@ -18,6 +18,6 @@ abstract class ApiService extends ChopperService {
     return _$ApiService(client);
   }
 
-  @Get(path: '/2.2/questions?page={page}&pagesize=10&order=desc&sort=activity&site=stackoverflow')
-  Future<Response> getPosts(@Path() String page);
+  @Get(path: '/2.2/questions?page={page}&pagesize=20&order=desc&sort=activity&site=stackoverflow')
+  Future<Response> getPosts(@Path() int page);
 }
