@@ -15,11 +15,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    // Future.microtask(() {
-    //   if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-    //     Provider.of<MainScreenViewModel>(context, listen: false).getPosts();
-    //   }
-    // });
+    Future.microtask(() {
+      final _viewModel = Provider.of<MainScreenViewModel>(context, listen: false);
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        _viewModel.getPosts();
+      }
+    });
   }
 
   @override
@@ -31,8 +32,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    // final _viewModel = Provider.of<MainScreenViewModel>(context);
+    final _viewModel = Provider.of<MainScreenViewModel>(context, listen: false);
+ 
+    _viewModel.getPosts();
   }
 
   @override
@@ -40,11 +42,6 @@ class _MainScreenState extends State<MainScreen> {
     return MainViewModelProvider<MainScreenViewModel>(
       model: MainScreenViewModel(context: context),
       builder: (MainScreenViewModel model) {
-        _scrollController.addListener(() {
-          if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-            model.getPosts();
-          }
-        });
         return Consumer<MainScreenViewModel>(
           builder: (context, model, child) => Scaffold(
             backgroundColor: Colors.white,

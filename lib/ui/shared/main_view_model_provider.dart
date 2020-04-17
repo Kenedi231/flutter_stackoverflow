@@ -16,10 +16,7 @@ class _MainViewModelProviderState extends State<MainViewModelProvider> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MainScreenViewModel>(
-      create: (BuildContext context2) {
-        widget.model.getPosts();
-        return widget.model;
-      },
+      create: (_) => widget.model,
       child: Consumer<MainScreenViewModel>(
         builder: (BuildContext context, MainScreenViewModel value, Widget child) => widget.builder(value),
       ),

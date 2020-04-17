@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infinity_list/core/viewmodels/screens/main_screen_view_model.dart';
+import 'package:infinity_list/core/viewmodels/screens/splash_screen_view_model.dart';
 import 'package:infinity_list/ui/screens/main_screen.dart';
 import 'package:infinity_list/ui/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    return ChangeNotifierProvider(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => MainScreenViewModel(context: context)),
+        ChangeNotifierProvider(create: (context) => SplashScreenViewModel(context: context)),
+      ],
       child: MaterialApp(
         title: 'Flutter Provider Architecture Starter',
         theme: ThemeData(
@@ -27,7 +32,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => SplashScreen(),
           '/main': (context) => MainScreen(),
         },
-      ), create: (BuildContext context) {},
+      ),
     );
   }
 }

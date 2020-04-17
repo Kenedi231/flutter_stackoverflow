@@ -23,6 +23,10 @@ class MainScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  void prindOne() {
+    print(1);
+  }
+
   @override
   void dispose() {
     super.dispose();
