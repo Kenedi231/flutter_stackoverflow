@@ -15,10 +15,13 @@ class MainScreenViewModel extends BaseViewModel {
   MainScreenViewModel({@required BuildContext context}) : super(context: context);
 
   Future<void> getPosts() async {
-    Response response = await apiSerivce.getPosts(currentPage);
+    Response response = await apiSerivce.getRandomData();
+    print(response.body);
     if (response.body != null) {
-      posts.addAll(response.body['items']);
+      posts.addAll(response.body['entries']);
       currentPage++;
+    } else {
+      posts.addAll(List<dynamic>.generate(15, (i) => {'title': 'Hello $i'}));
     }
     notifyListeners();
   }

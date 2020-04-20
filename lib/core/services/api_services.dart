@@ -8,7 +8,7 @@ part 'api_services.chopper.dart';
 abstract class ApiService extends ChopperService {
   static ApiService create() {
     final client = ChopperClient(
-      baseUrl: Url.baseUrl,
+      baseUrl: Url.publicUrl,
       services: [
         _$ApiService(),
       ],
@@ -20,4 +20,7 @@ abstract class ApiService extends ChopperService {
 
   @Get(path: '/2.2/questions?page={page}&pagesize=20&order=desc&sort=activity&site=stackoverflow')
   Future<Response> getPosts(@Path() int page);
+
+  @Get(path: '/entries?https=true')
+  Future<Response> getRandomData();
 }
