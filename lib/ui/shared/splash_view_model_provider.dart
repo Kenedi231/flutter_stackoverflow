@@ -12,7 +12,7 @@ class SplashViewModelProvider<T extends SplashScreenViewModel> extends Stateless
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
       create: (BuildContext context2) {
-        model.navigateToMain();
+        model.navigateToNextScreen();
         return model;
       },
       child: Consumer<T>(

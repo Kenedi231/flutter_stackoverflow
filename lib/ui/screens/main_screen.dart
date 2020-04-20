@@ -60,8 +60,8 @@ class _MainScreenState extends State<MainScreen> {
                       child: Column(
                         children: <Widget>[
                           ListTile(
-                            subtitle: Text(model.posts[index]['Description']),
                             title: Text(model.posts[index]['API']),
+                            subtitle: Text(model.posts[index]['Description']),
                             selected: true,
                           ),
                           ButtonBar(
