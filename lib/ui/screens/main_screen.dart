@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:infinity_list/core/viewmodels/screens/main_screen_view_model.dart';
 import 'package:infinity_list/ui/shared/main_view_model_provider.dart';
@@ -42,6 +43,11 @@ class _MainScreenState extends State<MainScreen> {
     _viewModel.getPosts();
   }
 
+  void logout() async {
+    await FlutterKeychain.remove(key: 'user');
+    Navigator.of(context).pushNamedAndRemoveUntil('/auth', (router) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MainViewModelProvider<MainScreenViewModel>(
@@ -68,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                             children: <Widget>[
                               FlatButton(
                                 child: Text(model.posts[index]['Category']),
-                                onPressed: () {},
+                                onPressed: logout,
                               )
                             ],
                           )
