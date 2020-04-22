@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:infinity_list/core/viewmodels/screens/auth_screen_view_model.dart';
 import 'package:infinity_list/ui/shared/auth_view_model_provider.dart';
 import 'package:provider/provider.dart';
@@ -11,11 +10,6 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
 
-  void login() async {
-    await FlutterKeychain.put(key: 'user', value: 'kolya');
-    Navigator.of(context).pushNamedAndRemoveUntil('/main', (router) => false);
-  }
-
   @override
   Widget build(BuildContext context) {
     return AuthViewModelProvider<AuthScreenViewModel>(
@@ -25,7 +19,9 @@ class _AuthScreenState extends State<AuthScreen> {
             backgroundColor: Colors.grey[900],
             body: Center(
               child: RaisedButton(
-                onPressed: login,
+                onPressed: () {
+                  model.login(context);
+                },
                 child: Text('Auth Screen', style: TextStyle(color: Colors.white)),
                 color: Colors.blue,
               ),

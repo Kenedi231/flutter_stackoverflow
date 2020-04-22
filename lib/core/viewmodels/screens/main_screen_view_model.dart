@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_keychain/flutter_keychain.dart';
 import 'package:infinity_list/core/services/api_services.dart';
 import 'package:infinity_list/core/viewmodels/base_view_model.dart';
 
@@ -24,8 +25,9 @@ class MainScreenViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void prindOne() {
-    print(1);
+  void logout(context1) async {
+    await FlutterKeychain.remove(key: 'user');
+    Navigator.of(context1).pushNamedAndRemoveUntil('/auth', (router) => false);
   }
 
   @override
